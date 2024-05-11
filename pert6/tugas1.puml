@@ -1,29 +1,34 @@
-@startuml tugas1
+@startuml tugas
 
-left to right direction
+skinparam monochrome true
 
-actor Pelanggan as P
-rectangle "Program Menu Minuman" {
-    :vector<MenuItem> menuMinuman = {
-    {"Teh", 5000},
-    {"Kopi", 7000}
-    };
-    :double total = 0.0;
-    :bool selesai = false;
-    :tampilkanMenu(menuMinuman);
+start
 
-    while (!selesai) {
-        :int pilihan = tampilkanMenu(menuMinuman);
-        if (pilihan >= 1 && pilihan <= menuMinuman.size()) {
-            :total += menuMinuman[pilihan - 1].harga;
-            :Menampilkan pilihan dan total;
-        } else if (pilihan == 0) {
-            :selesai = true;
-        } else {
-            :Menampilkan "Pilihan tidak valid!";
-        }
-    }
-    :Menampilkan total;
-}
+title Pilihan Menu Minuman
+
+:Menu;
+if (Pilih Menu) then (Teh)
+  :Pilih Teh;
+  if (Pilih Manis) then (Ya)
+    :Tambah Gula;
+  endif
+  if (Pilih Es) then (Ya)
+    :Tambah Es;
+  endif
+  :Harga Teh = 5000;
+else (Kopi)
+  :Pilih Kopi;
+  if (Pilih Susu) then (Ya)
+    :Tambah Susu;
+  endif
+  if (Pilih Gula) then (Ya)
+    :Tambah Gula;
+  endif
+  :Harga Kopi = 7000;
+endif
+
+:Hitung Total = Harga Teh / Kopi;
+
+stop
 
 @enduml
